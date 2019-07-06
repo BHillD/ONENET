@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sample.demo.mapper.ForestMapper">
+
+
+    <insert id="addForestAtm" parameterType="com.sample.demo.model.Forest_atm">
+        insert into forest_atm_data values (null, #{atm.co2}, #{atm.smoke}, #{atm.atm_tem}, #{atm.atm_humidity})
+    </insert>
+
+    <insert id="addForestSoil" parameterType="com.sample.demo.model.Forest_soil">
+        insert into forest_soil_data values (null, #{soil.soil_nity}, #{soil.soil_tem}, #{soil.soil_hum}, #{soil.conductivity})
+    </insert>
+
+    <insert id="addDate" parameterType="java.lang.String">
+        INSERT INTO forest_data(id, DATE, soil_id, atm_id, fish_id) VALUES (NULL, #{date}, (SELECT MAX(id) FROM forest_soil_data), (SELECT MAX(id) FROM forest_atm_data), (SELECT MAX(id) FROM fisheries))
+    </insert>
+
+    <insert id="addFisherise">
+        insert into fisheries values (null, #{fisheries.water_tem}, #{fisheries.turbidity})
+    </insert>
+
+    <update id="updateStandard" statementType="STATEMENT">
+        update foreststandard set ${name} = ${value}
+    </update>
+
+    <select id="getStandard" resultType="java.math.BigDecimal" statementType="STATEMENT">
+        select ${row} from foreststandard
+    </select>
+
+    <select id="getForest_atm" resultType="com.sample.demo.model.Forest_atm">
+        select * from forest_atm_data where id = (select MAX(atm_id) from forest_data)
+    </select>
+
+    <select id="getForest_soil" resultType="com.sample.demo.model.Forest_soil">
+        select * from forest_soil_data where id = (select MAX(soil_id) from forest_data)
+    </select>
+
+    <select id="getFish" resultType="com.sample.demo.model.Fisheries">
+        select * from fisheries where id = (select MAX(fish_id) from forest_data)
+    </select>
+
+
+</mapper>

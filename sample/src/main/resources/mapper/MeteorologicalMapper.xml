@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sample.demo.mapper.MeteorologicalMapper">
+
+    <insert id="addMetSoil" parameterType="com.sample.demo.model.Met_soil">
+        insert into meteorological_soil_data values (null,#{soil.soil_tem}, #{soil.soil_humidity})
+    </insert>
+
+    <insert id="addMetAtm" parameterType="com.sample.demo.model.Met_atm">
+        insert into meteorological_atm_data values (null,#{atm.o2},#{atm.atm_tem},#{atm.atm_humidity},#{atm.atm_pre})
+    </insert>
+
+    <insert id="addMetEnviron" parameterType="com.sample.demo.model.Met_envir">
+        insert into meteorological_environ_data values (null,#{environ.illum}, #{environ.rain}, #{environ.wind_dir}, #{environ.wind_sp})
+    </insert>
+
+    <insert id="addMetDate" parameterType="String">
+        INSERT INTO meteorological_data(id,DATE,soil_id,atm_id,environ_id) VALUES (NULL, #{date}, (SELECT MAX(id) FROM meteorological_soil_data), (SELECT MAX(id) FROM meteorological_atm_data), (SELECT MAX(id) FROM meteorological_environ_data))
+    </insert>
+
+    <update id="updateStandard" statementType="STATEMENT">
+        update metstandard set ${name} = ${value}
+    </update>
+
+    <select id="getStandard" statementType="STATEMENT" resultType="java.math.BigDecimal">
+        select ${row} from metstandard
+    </select>
+
+    <select id="getMetAtm" resultType="com.sample.demo.model.Met_atm">
+        select * from meteorological_atm_data where id = (select MAX(atm_id) from meteorological_data)
+    </select>
+
+    <select id="getMetEnvir" resultType="com.sample.demo.model.Met_envir">
+        select * from meteorological_environ_data where id= (select MAX(environ_id) from meteorological_data)
+    </select>
+
+    <select id="getMetSoil" resultType="com.sample.demo.model.Met_soil">
+        select * from meteorological_soil_data where id= (select MAX(soil_id) from meteorological_data)
+    </select>
+
+</mapper>

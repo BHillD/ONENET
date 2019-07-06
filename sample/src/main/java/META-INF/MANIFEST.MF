@@ -1,0 +1,47 @@
+Manifest-Version: 1.0
+Class-Path: proto-google-common-protos-1.12.0.jar shiro-crypto-cipher-
+ 1.4.0.jar mimepull-1.9.11.jar log4j-api-2.11.2.jar spring-boot-starte
+ r-web-services-2.1.5.RELEASE.jar guava-25.1-android.jar commons-fileu
+ pload-1.3.1.jar hibernate-validator-6.0.16.Final.jar grpc-context-1.1
+ 8.0.jar javax.annotation-api-1.3.2.jar shiro-web-1.4.0.jar log4j-to-s
+ lf4j-2.11.2.jar spring-context-support-5.1.7.RELEASE.jar javax.xml.so
+ ap-api-1.4.0.jar spring-oxm-5.1.7.RELEASE.jar jackson-databind-2.9.8.
+ jar saaj-impl-1.5.0.jar bcprov-jdk15-140.jar shiro-spring-1.4.0.jar l
+ ogback-core-1.2.3.jar spring-messaging-5.1.7.RELEASE.jar mysql-connec
+ tor-java-8.0.16.jar shiro-config-core-1.4.0.jar jul-to-slf4j-1.7.26.j
+ ar opencensus-contrib-grpc-metrics-0.18.0.jar jackson-annotations-2.9
+ .0.jar spring-boot-starter-json-2.1.5.RELEASE.jar stax-ex-1.8.jar spr
+ ing-expression-5.1.7.RELEASE.jar spring-boot-autoconfigure-2.1.5.RELE
+ ASE.jar grpc-core-1.18.0.jar spring-boot-starter-logging-2.1.5.RELEAS
+ E.jar jackson-core-2.9.8.jar shiro-crypto-hash-1.4.0.jar spring-boot-
+ starter-tomcat-2.1.5.RELEASE.jar thumbnailator-0.4.8.jar error_prone_
+ annotations-2.2.0.jar jackson-module-parameter-names-2.9.8.jar animal
+ -sniffer-annotations-1.17.jar fastjson-1.2.56.jar grpc-protobuf-1.18.
+ 0.jar shiro-lang-1.4.0.jar protobuf-java-3.5.1.jar checker-compat-qua
+ l-2.5.2.jar spring-boot-2.1.5.RELEASE.jar tomcat-embed-websocket-9.0.
+ 19.jar activation-1.1.jar spring-core-5.1.7.RELEASE.jar shiro-spring-
+ boot-starter-1.4.0.jar spring-tx-5.1.7.RELEASE.jar mybatis-3.5.1.jar 
+ okio-1.11.0.jar spring-boot-starter-websocket-2.1.5.RELEASE.jar gson-
+ 2.8.5.jar snakeyaml-1.23.jar spring-aop-5.1.7.RELEASE.jar mybatis-spr
+ ing-2.0.1.jar javax.servlet-api-4.0.1.jar filters-2.0.235-1.jar class
+ mate-1.4.0.jar spring-webmvc-5.1.7.RELEASE.jar mybatis-spring-boot-au
+ toconfigure-2.0.1.jar spring-web-5.1.7.RELEASE.jar jaxb-api-2.3.1.jar
+  org.eclipse.paho.client.mqttv3-1.2.0.jar commons-lang3-3.8.1.jar spr
+ ing-jdbc-5.1.7.RELEASE.jar shiro-config-ogdl-1.4.0.jar spring-boot-st
+ arter-2.1.5.RELEASE.jar jboss-logging-3.3.2.Final.jar slf4j-api-1.7.2
+ 6.jar spring-context-5.1.7.RELEASE.jar javax.mail-1.6.2.jar jsr305-3.
+ 0.2.jar spring-beans-5.1.7.RELEASE.jar jackson-datatype-jdk8-2.9.8.ja
+ r shiro-crypto-core-1.4.0.jar j2objc-annotations-1.1.jar spring-jcl-5
+ .1.7.RELEASE.jar commons-collections-3.2.2.jar okhttp-3.5.0.jar shiro
+ -event-1.4.0.jar HikariCP-3.2.0.jar logback-classic-1.2.3.jar tomcat-
+ embed-core-9.0.19.jar jackson-datatype-jsr310-2.9.8.jar spring-boot-s
+ tarter-jdbc-2.1.5.RELEASE.jar validation-api-2.0.1.Final.jar spring-w
+ s-core-3.0.7.RELEASE.jar commons-io-2.2.jar spring-boot-starter-mail-
+ 2.1.5.RELEASE.jar grpc-protobuf-lite-1.18.0.jar mybatis-spring-boot-s
+ tarter-2.0.1.jar spring-boot-starter-web-2.1.5.RELEASE.jar commons-be
+ anutils-1.9.3.jar druid-1.1.15.jar spring-websocket-5.1.7.RELEASE.jar
+  javax.activation-api-1.2.0.jar tomcat-embed-el-9.0.19.jar jaxws-api-
+ 2.3.1.jar shiro-cache-1.4.0.jar opencensus-api-0.18.0.jar shiro-core-
+ 1.4.0.jar kaptcha-2.3.2.jar spring-xml-3.0.7.RELEASE.jar
+Main-Class: com.sample.demo.SampleApplication
+

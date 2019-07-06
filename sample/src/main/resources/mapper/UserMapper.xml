@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sample.demo.mapper.UserMapper">
+    <resultMap id="user" type="com.sample.demo.model.User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="sex" column="sex"/>
+        <result column="role" property="identity"/>
+        <result column="hobby" property="hobby"/>
+        <result column="face" property="face"/>
+    </resultMap>
+
+
+    <insert id="registUser" parameterType="com.sample.demo.model.User">
+        insert into user (id, username, password, sex, email) values (null, #{user.username}, #{user.password}, #{user.sex}, #{user.email})
+    </insert>
+
+    <update id="update">
+        update user set name = #{user.name}, hobby = #{user.hobby}, email = #{user.email}, sex = #{user.sex} where username = #{user.username}
+    </update>
+
+    <update id="updateHeadPort">
+        update user set face = #{url} where username = #{username}
+    </update>
+
+    <select id="getUserByUsername" resultMap="user">
+        select * from user where user.username = #{username}
+    </select>
+
+</mapper>

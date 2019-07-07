@@ -49,15 +49,11 @@ public class MeteorologicalService {
         return obj;
     }
 
-    public void updateStandard(String name, String value){
+    public JSONObject updateStandard(String name, String value){
         meteorologicalMapper.updateStandard(name, value);
-    }
-
-    public List<String> getHistory(){
-        return meteorologicalMapper.getData();
-    }
-
-    public List<String> getTime(){
-        return meteorologicalMapper.getTime();
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("value", value);
+        return json;
     }
 }

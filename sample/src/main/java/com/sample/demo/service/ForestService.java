@@ -48,8 +48,12 @@ public class ForestService {
         return forestMapper.getStandard(row);
     }
 
-    public void updateStandard(String name, String value){
+    public JSONObject updateStandard(String name, String value){
         forestMapper.updateStandard(name, value);
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("value", value);
+        return json;
     }
 
     public JSONObject getData(){
@@ -58,10 +62,6 @@ public class ForestService {
         obj.put("for_soil", forestMapper.getForest_soil());
         obj.put("fish", forestMapper.getFish());
         return obj;
-    }
-
-    public List<String> getHistory(){
-        return forestMapper.getData();
     }
 
 }

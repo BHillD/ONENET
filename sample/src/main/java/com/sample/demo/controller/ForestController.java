@@ -3,6 +3,7 @@ package com.sample.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.sample.demo.service.ForestService;
 import com.sample.demo.service.HttpService;
+import com.sample.demo.utils.Constant;
 import com.sample.demo.utils.Message;
 import com.sample.demo.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,23 +34,27 @@ public class ForestController {
 
 
     @GetMapping("/standard")
-    public ResponseEntity getStandara(@RequestParam("name") String row){
+    public ResponseEntity getStandard(@RequestParam("name") String row){
         return Response.ok(forestService.getStandard(row));
     }
 
     @PutMapping("/standard")
     public ResponseEntity updateStandard(@RequestBody JSONObject obj){
-        String name = obj.getString("name");
-        String value = obj.getString("value");
+        String name = obj.getString(Constant.name);
+        String value = obj.getString(Constant.value);
         httpService.post(Message.write(Message.value(forest, value, name)), false);
-        forestService.updateStandard(name, value);
-        return Response.ok();
+        return Response.ok(forestService.updateStandard(name, value));
     }
 
     @GetMapping("/update")
     public ResponseEntity updateData(){
-        httpService.get(false);
+        httpService.post(Message.write(Constant.updateData), false);
         return Response.ok();
     }
 
+    @GetMapping("/control")
+    public ResponseEntity control(@RequestParam("control") String control, @RequestParam(value = "key", defaultValue = "0") String key){
+        httpService.post(Message.write(control+key), false);
+        return Response.ok();
+    }
 }

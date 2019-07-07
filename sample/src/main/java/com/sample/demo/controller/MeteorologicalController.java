@@ -3,6 +3,7 @@ package com.sample.demo.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.sample.demo.service.HttpService;
 import com.sample.demo.service.MeteorologicalService;
+import com.sample.demo.utils.Constant;
 import com.sample.demo.utils.Message;
 import com.sample.demo.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,17 +43,11 @@ public class MeteorologicalController {
 
     @PutMapping("/standard")
     public ResponseEntity updateStandard(@RequestBody JSONObject obj){
-        String name = obj.getString("name");
-        String value = obj.getString("value");
+        String name = obj.getString(Constant.name);
+        String value = obj.getString(Constant.value);
         httpService.post(Message.write(Message.value(meteo, name, value)), true);
-        meteorologicalService.updateStandard(name, value);
-        return Response.ok();
+        return Response.ok(meteorologicalService.updateStandard(name, value));
     }
 
-    @GetMapping("/update")
-    public ResponseEntity updateData(){
-        httpService.get(true);
-        return Response.ok();
-    }
 
 }

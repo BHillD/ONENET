@@ -5,6 +5,7 @@ import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.sample.demo.model.User;
 import com.sample.demo.service.AuthService;
 import com.sample.demo.service.MailService;
+import com.sample.demo.utils.Constant;
 import com.sample.demo.utils.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -67,24 +68,24 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody JSONObject obj){
-        String username = obj.getString("username");
-        String password = obj.getString("password");
-        String code = obj.getString("captcha");
+        String username = obj.getString(Constant.username);
+        String password = obj.getString(Constant.password);
+        String code = obj.getString(Constant.captcha);
         if(StringUtils.isAnyBlank(username, password, code)){
-            return Response.unauth("登录信息不足");
+            return Response.unauth(Constant.infoerr);
         }
-        if(!code.equals(SecurityUtils.getSubject().getSession().getAttribute("code"))){
-            return Response.unauth("验证码错误");
+        if(!code.equals(SecurityUtils.getSubject().getSession().getAttribute(Constant.key))){
+            return Response.unauth(Constant.infoerr);
         }
         return authService.login(username, password);
     }
 
     @PostMapping("/applogin")
     public ResponseEntity appLogin(@RequestBody JSONObject obj){
-        String username = obj.getString("username");
-        String password = obj.getString("password");
+        String username = obj.getString(Constant.username);
+        String password = obj.getString(Constant.password);
         if(StringUtils.isAnyBlank(username, password)){
-            return Response.unauth("登录信息不足");
+            return Response.unauth(Constant.err);
         }
         return authService.login(username, password);
     }
@@ -92,7 +93,7 @@ public class AuthController {
     @GetMapping("/logout")
     public ResponseEntity logout(){
         SecurityUtils.getSubject().logout();
-        return Response.ok("退出成功");
+        return Response.ok(Constant.succ);
     }
 
     @PostMapping("/regist")
@@ -100,18 +101,18 @@ public class AuthController {
         if(authService.registUser(obj)){
             User user = (User) obj.toJavaObject(User.class);
             mailService.sendMail(user.getEmail(),"欢迎注册现代农业管理系统", "注册成功");
-            return Response.ok("注册成功");
+            return Response.ok(Constant.succ);
         }
-        return Response.unavailable("注册失败");
+        return Response.unavailable(Constant.err);
     }
 
     @PutMapping("/user")
     public ResponseEntity update(@RequestBody JSONObject obj){
         User user = obj.toJavaObject(User.class);
         if(StringUtils.isAnyBlank(user.getName(), user.getHobby())){
-            return Response.unavailable("非法字符");
+            return Response.unavailable(Constant.err);
         }
         authService.update(user);
-        return Response.ok("修改成功");
+        return Response.ok(Constant.succ);
     }
 }

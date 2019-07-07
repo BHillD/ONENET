@@ -2,9 +2,11 @@ package com.sample.demo.config;
 
 import com.sample.demo.mapper.UserMapper;
 import com.sample.demo.model.User;
+import com.sample.demo.service.AuthService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
@@ -19,24 +21,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Realm extends AuthorizingRealm {
 
     @Autowired
-    private UserMapper userMapper;
+    private AuthService authService;
 
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-//        String username = (String)principals.getPrimaryPrincipal();
-//        User user = userService.getUserByUsername(username);
-//        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//        info.addRole(user.getRole().getName());
-//        return info;
-        return null;
+        String username = (String)principals.getPrimaryPrincipal();
+        User user = authService.getUserByUsername(username);
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+        info.addRole(user.getIdentity());
+        return info;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken args) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) args;
         String username = token.getUsername();
-        User user = userMapper.getUserByUsername(username);
+        User user = authService.getUserByUsername(username);
         if(user == null){
             return null;
         }

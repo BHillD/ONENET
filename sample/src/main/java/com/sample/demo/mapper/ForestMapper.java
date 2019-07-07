@@ -26,7 +26,4 @@ public interface ForestMapper {
 
     Fisheries getFish();
 
-    List<String> getData();
-
-
 }

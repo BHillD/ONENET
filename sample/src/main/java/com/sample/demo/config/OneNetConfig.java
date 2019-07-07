@@ -47,7 +47,7 @@ public class OneNetConfig {
 
     @Bean("forest")
     public String[] forest(){
-        String[] forest = new String[10];
+        String[] forest = new String[11];
         forest[0] = "max_atm_tem";
         forest[1] = "max_atm_hum";
         forest[2] = "max_atm_co2";
@@ -58,6 +58,7 @@ public class OneNetConfig {
         forest[7] = "max_soil_nity";
         forest[8] = "max_soil_conduct";
         forest[9] = "max_water_tur";
+        forest[10] = "max_ox";
         return forest;
     }
 

@@ -3,7 +3,6 @@ package com.sample.demo.controller;
 import com.sample.demo.model.User;
 import com.sample.demo.service.AuthService;
 import com.sample.demo.service.FastdfsService;
-import com.sample.demo.utils.FileUtils;
 import com.sample.demo.utils.Response;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;

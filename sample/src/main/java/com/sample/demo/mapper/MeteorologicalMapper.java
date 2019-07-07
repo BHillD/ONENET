@@ -27,7 +27,4 @@ public interface MeteorologicalMapper {
 
     void updateStandard(@Param("name") String name,@Param("value") String value);
 
-    List<String> getData();
-
-    List<String> getTime();
 }

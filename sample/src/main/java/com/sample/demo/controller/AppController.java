@@ -29,11 +29,6 @@ public class AppController {
     @Autowired
     private ForestService forestService;
 
-    @Autowired
-    private HttpService httpService;
-
-    @Autowired
-    private WebSocketService webSocketService;
 
     @GetMapping("/data")
     public ResponseEntity getData(){

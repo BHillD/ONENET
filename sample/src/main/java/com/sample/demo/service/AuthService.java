@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.sample.demo.mapper.UserMapper;
 import com.sample.demo.model.User;
+import com.sample.demo.utils.Constant;
 import com.sample.demo.utils.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -53,13 +54,13 @@ public class AuthService {
             Map<String,JSONObject> map = new HashMap<String, JSONObject>();
             User user = userMapper.getUserByUsername(username);
             JSONObject json = (JSONObject) JSON.toJSON(user);
-            json.remove("password");
+            json.remove(Constant.password);
             map.put("user",json);
             return Response.ok(map);
         }catch (IncorrectCredentialsException e){
-            return Response.unauth("用户名或密码不正确");
+            return Response.unauth(Constant.IncorrectCredentialsException);
         }catch (UnknownAccountException e){
-            return Response.unauth("用户名不存在");
+            return Response.unauth(Constant.UnknownAccountException);
         }
     }
 
